@@ -37,7 +37,7 @@ const Contact = () => {
       </div>
       
       <footer className="footer center">
-        <p>© {new Date().getFullYear()} Venkat RN. All Rights Reserved.</p>
+        <p>© {new Date().getFullYear()} Venkata Narayana Reddy. All Rights Reserved.</p>
       </footer>
       
       <style>{`

@@ -1,9 +1,26 @@
-import React from 'react';
-import { Download, ChevronRight } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Download, ChevronRight, Play, Volume2, VolumeX } from 'lucide-react';
 import profileImg from '../assets/1718229819958.jpeg';
 import resumeFile from '../assets/VenkatRN_Resumedocx.pdf';
+import venkyVideo from '../assets/venky.mp4';
 
 const Hero = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const videoRef = useRef(null);
+
+  const handlePlayClick = () => {
+    setIsPlaying(true);
+    setIsMuted(false);
+  };
+
+  const toggleMute = () => {
+    setIsMuted(!isMuted);
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+    }
+  };
+
   return (
     <section id="about" className="hero-section section">
       <div className="container hero-container">
@@ -12,8 +29,11 @@ const Hero = () => {
             <span className="dot"></span> Available for Web3 & FinTech
           </div>
           
-          <h1 className="hero-title">
-            Hi, I'm <span className="gradient-text">Venkat RN</span>
+          <h1 className="hero-title" style={{ fontSize: '3rem' }}>
+            Hi, I'm <br/><span className="gradient-text">Venkata Narayana Reddy</span>
+            <span style={{ fontSize: '1.5rem', color: 'var(--text-muted)', display: 'block', marginTop: '0.5rem', fontWeight: '400' }}>
+              (People call me Venkat)
+            </span>
           </h1>
           
           <h2 className="hero-subtitle">
@@ -37,7 +57,29 @@ const Hero = () => {
         
         <div className="hero-visual animate-fade-in" style={{ animationDelay: '0.2s' }}>
           <div className="image-wrapper glass-panel">
-            <img src={profileImg} alt="Venkat RN" className="profile-img" />
+            {!isPlaying ? (
+              <>
+                <img src={profileImg} alt="Venkat RN" className="profile-img" />
+                <button className="play-btn" onClick={handlePlayClick} aria-label="Play video">
+                  <Play size={24} className="play-icon" />
+                </button>
+              </>
+            ) : (
+              <div className="video-container">
+                <video
+                  ref={videoRef}
+                  src={venkyVideo}
+                  autoPlay
+                  controls={false}
+                  muted={isMuted}
+                  className="profile-video"
+                  onEnded={() => setIsPlaying(false)}
+                />
+                <button className="mute-btn" onClick={toggleMute} aria-label="Toggle mute">
+                  {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
+                </button>
+              </div>
+            )}
             <div className="glow-effect"></div>
           </div>
         </div>
@@ -128,6 +170,76 @@ const Hero = () => {
         
         .image-wrapper:hover .profile-img {
           filter: grayscale(0%) contrast(100%);
+        }
+
+        .play-btn {
+          position: absolute;
+          bottom: 15px;
+          left: 15px;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: rgba(0, 0, 0, 0.6);
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          z-index: 10;
+          transition: all 0.3s ease;
+          backdrop-filter: blur(4px);
+        }
+
+        .play-btn:hover {
+          transform: scale(1.1);
+          background: rgba(16, 185, 129, 0.8);
+          border-color: rgba(16, 185, 129, 0.6);
+          box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .play-icon {
+          margin-left: 6px;
+        }
+
+        .video-container {
+          width: 100%;
+          height: 100%;
+          position: relative;
+          z-index: 2;
+          border-radius: 20px;
+          overflow: hidden;
+        }
+
+        .profile-video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 20px;
+        }
+
+        .mute-btn {
+          position: absolute;
+          bottom: 15px;
+          right: 15px;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: rgba(0, 0, 0, 0.6);
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          z-index: 10;
+          transition: all 0.2s ease;
+          backdrop-filter: blur(4px);
+        }
+
+        .mute-btn:hover {
+          background: rgba(0, 0, 0, 0.8);
+          transform: scale(1.1);
         }
         
         .glow-effect {
