@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, UserCircle, Code } from 'lucide-react';
+import { Mail, UserCircle, Code, MessageCircle } from 'lucide-react';
 
 const Contact = () => {
   return (
@@ -17,15 +17,19 @@ const Contact = () => {
             <div className="contact-links">
               <a href="mailto:narayana.tumu1995@gmail.com" className="contact-link glass-panel">
                 <Mail className="contact-icon" />
-                <span>narayana.tumu1995@gmail.com</span>
+                <span>Email Me</span>
+              </a>
+              <a href="https://wa.me/919182387725" target="_blank" rel="noreferrer" className="contact-link glass-panel">
+                <MessageCircle className="contact-icon" />
+                <span>WhatsApp</span>
               </a>
               <a href="https://linkedin.com/in/venkattumu" target="_blank" rel="noreferrer" className="contact-link glass-panel">
                 <UserCircle className="contact-icon" />
-                <span>linkedin.com/in/venkattumu</span>
+                <span>LinkedIn</span>
               </a>
               <a href="https://github.com/vnrtumu" target="_blank" rel="noreferrer" className="contact-link glass-panel">
                 <Code className="contact-icon" />
-                <span>github.com/vnrtumu</span>
+                <span>GitHub</span>
               </a>
             </div>
           </div>
