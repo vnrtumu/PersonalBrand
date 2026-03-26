@@ -19,7 +19,7 @@ const Contact = () => {
                 <Mail className="contact-icon" />
                 <span>Email Me</span>
               </a>
-              <a href="https://wa.me/919182387725" target="_blank" rel="noreferrer" className="contact-link glass-panel">
+              <a href="https://wa.me/919182387725?text=Hi%20Venkat!%20I%20am%20reaching%20out%20from%20your%20personal%20website." target="_blank" rel="noreferrer" className="contact-link glass-panel">
                 <MessageCircle className="contact-icon" />
                 <span>WhatsApp</span>
               </a>
